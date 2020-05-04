@@ -77,27 +77,16 @@
           name: '',
           strasse: '',
           plz: '',
-          ort: 'Berlin'
-        },
-        computed: {
-          showAlert() {
-            return this.name.length > 4 ? true : false
-          }
+          ort: 'Berlin',
+          land: ''
         },
         methods: {
             pdf_holen() {
                 window.open('http://kinderkulturverein.de:8000/vollmacht/'+this.name+'?strasse='+this.strasse+'&plz='+this.plz+'&ort='+this.ort+'&land='+this.land+'&sprache=de','_blank')
-                //axios
-                //  .get('http://kinderkulturverein.de:8000/vollmacht/'+this.text+'?strasse=irgendwas&plz=10243')
-                //  .then((response) => {
-                //    console.log(response)
-                //  })
-                //  .catch((error) => { alert(error)})
             },
             pdf_holen1() {
                 window.open('http://kinderkulturverein.de:8000/vollmacht/'+this.name+'?strasse='+this.strasse+'&plz='+this.plz+'&ort='+this.ort+'&land='+this.land+'&sprache=en','_blank')
             }
-            //http://kinderkulturverein.de:8000/vollmacht/Otto%20Geller?strasse=xstr%2033&plz=10245
         }
         //mounted () {
         //    axios
