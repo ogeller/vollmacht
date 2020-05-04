@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+    <title>My first BootstrapVue app</title>
+
+    <!-- Required Stylesheets -->
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css"
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css"
+    />
+
+    <!-- Load polyfills to support older browsers -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es2015%2CIntersectionObserver"></script>
+
+    <!-- Required scripts -->
+    <script src="https://unpkg.com/vue@latest/dist/vue.js"></script>
+    <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+  </head>
+  
+  <body>
+    <!-- Our application root element -->
+    <div id="app">
+      <b-container>
+        <h1>Vollmacht als pdf erzeugen</h1>
+        
+        <b-col sm="8" lg="5"  >
+          <b-form-input v-model.trim="name" placeholder="Name"></b-form-input>
+        </b-col>
+        <b-col sm="8" lg="5"  >
+          <b-form-input v-model.trim="strasse" placeholder="Strasse Hausnummer"></b-form-input>
+        </b-col>
+        <b-form-row>
+        <b-col sm="2" lg="1"  >
+          <b-form-input  v-model.trim="plz" placeholder="PLZ"></b-form-input>
+        </b-col>
+        <b-col sm="6" lg="4"  >
+          <b-form-input v-model.trim="ort" placeholder="Berlin"></b-form-input>
+        </b-col>
+        </b-form-row>
+        <b-col sm="8" lg="5"  >
+          <b-form-input v-model.trim="land" placeholder="Land"></b-form-input>
+        </b-col>
+      
+      
+      <div class="row">
+     
+      </div>
+      
+      <hr class="col-xs-12">
+        
+      <p>
+        <b-btn variant="primary" @click="pdf_holen">Vollmacht deutsch</b-btn>
+      
+        <b-btn variant="danger" @click="pdf_holen1">Vollmacht deutsch-englisch</b-btn>
+      </p>  
+      </b-container>  
+      
+    </div>
+
+    <!-- Start running your app -->
+    <script>
+      window.app = new Vue({
+        el: '#app',
+        data: {
+          name: '',
+          strasse: '',
+          plz: '',
+          ort: 'Berlin'
+        },
+        computed: {
+          showAlert() {
+            return this.name.length > 4 ? true : false
+          }
+        },
+        methods: {
+            pdf_holen() {
+                window.open('http://kinderkulturverein.de:8000/vollmacht/'+this.name+'?strasse='+this.strasse+'&plz='+this.plz+'&ort='+this.ort+'&land='+this.land+'&sprache=de','_blank')
+                //axios
+                //  .get('http://kinderkulturverein.de:8000/vollmacht/'+this.text+'?strasse=irgendwas&plz=10243')
+                //  .then((response) => {
+                //    console.log(response)
+                //  })
+                //  .catch((error) => { alert(error)})
+            },
+            pdf_holen1() {
+                window.open('http://kinderkulturverein.de:8000/vollmacht/'+this.name+'?strasse='+this.strasse+'&plz='+this.plz+'&ort='+this.ort+'&land='+this.land+'&sprache=en','_blank')
+            }
+            //http://kinderkulturverein.de:8000/vollmacht/Otto%20Geller?strasse=xstr%2033&plz=10245
+        }
+        //mounted () {
+        //    axios
+        //        .get('https://api.coindesk.com/v1/bpi/currentprice.json')
+        //        .then(response => (this.info = response))
+        //}
+      })
+    </script>
+  </body>
+</html>
