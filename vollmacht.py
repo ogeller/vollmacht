@@ -23,14 +23,15 @@ app.add_middleware(
 
 
 
-
-heute=datetime.date.today().strftime("%d.%m.%Y")
-
 def pdf(name,strasse,plz,ort,land,datum,sprache):
     if sprache=="de":
         fn="Vollmacht ACCEPT EINS deutsch.pdf"
     elif sprache=="en":
         fn="Vollmacht_ACCEPT EINS deutsch-englisch.pdf"
+    elif sprache=="de1":
+        fn="Vollmacht Geller deutsch.pdf"
+    elif sprache=="en1":
+        fn="Vollmacht_Geller deutsch-englisch.pdf"
     else:
         fn=""
     doc=fitz.open(fn)
@@ -60,7 +61,8 @@ def pdf(name,strasse,plz,ort,land,datum,sprache):
     
 
 
-@app.get("/vollmacht/{name}")
-async def vollmacht(name:str,strasse:str,plz:str,ort:str="Berlin",land:str="",datum:str=heute,sprache:str="de"):
-    data = pdf(name,strasse,plz,ort,land,datum,sprache)
+@app.get("/vollmacht/")
+async def vollmacht(name:str,strasse:str,plz:str,ort:str="Berlin",land:str="",sprache:str="de"):
+    heute=datetime.date.today().strftime("%d.%m.%Y")
+    data = pdf(name,strasse,plz,ort,land,heute,sprache)
     return  FileResponse('Vollmacht1.pdf')   #{"name": name,"str":strasse,"ort":plzort}

@@ -61,9 +61,11 @@
       <hr class="col-xs-12">
         
       <p>
-        <b-btn variant="primary" @click="pdf_holen">Vollmacht deutsch</b-btn>
-      
-        <b-btn variant="danger" @click="pdf_holen1">Vollmacht deutsch-englisch</b-btn>
+        <b-btn variant="primary" @click="pdf_holen">ACC1 deutsch</b-btn>
+        <b-btn variant="danger" @click="pdf_holen1">ACC1 de-en</b-btn>
+      </p><p>
+        <b-btn variant="primary" @click="pdf_holen2">Geller de-en</b-btn>
+        <b-btn variant="danger" @click="pdf_holen3">Geller de-en</b-btn>
       </p>  
       </b-container>  
       
@@ -82,10 +84,16 @@
         },
         methods: {
             pdf_holen() {
-                window.open('http://kinderkulturverein.de:8000/vollmacht/'+this.name+'?strasse='+this.strasse+'&plz='+this.plz+'&ort='+this.ort+'&land='+this.land+'&sprache=de','_blank')
+                window.open('http://kinderkulturverein.de:8000/vollmacht/?name='+this.name+'&strasse='+this.strasse+'&plz='+this.plz+'&ort='+this.ort+'&land='+this.land+'&sprache=de','_blank');
             },
             pdf_holen1() {
-                window.open('http://kinderkulturverein.de:8000/vollmacht/'+this.name+'?strasse='+this.strasse+'&plz='+this.plz+'&ort='+this.ort+'&land='+this.land+'&sprache=en','_blank')
+                window.open('http://kinderkulturverein.de:8000/vollmacht/?name='+this.name+'&strasse='+this.strasse+'&plz='+this.plz+'&ort='+this.ort+'&land='+this.land+'&sprache=en','_blank');
+            },
+            pdf_holen2() {
+                window.open('http://kinderkulturverein.de:8000/vollmacht/?name='+this.name+'&strasse='+this.strasse+'&plz='+this.plz+'&ort='+this.ort+'&land='+this.land+'&sprache=de1','_blank');
+            },
+            pdf_holen3() {
+                window.open('http://kinderkulturverein.de:8000/vollmacht/?name='+this.name+'&strasse='+this.strasse+'&plz='+this.plz+'&ort='+this.ort+'&land='+this.land+'&sprache=en1','_blank');
             }
         }
         //mounted () {
